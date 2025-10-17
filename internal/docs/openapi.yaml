@@ -1,0 +1,120 @@
+openapi: 3.0.3
+info:
+  title: Car Pooling API
+  version: 1.0.0
+  description: API for car pooling challenge
+servers:
+  - url: http://localhost:8080
+paths:
+  /status:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+  /cars:
+    put:
+      summary: Reset cars
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Car'
+      responses:
+        '200': { description: OK }
+        '400': { description: Bad Request }
+        '415': { description: Unsupported Media Type }
+        '405': { description: Method Not Allowed }
+  /journey:
+    post:
+      summary: Create journey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Journey'
+      responses:
+        '200': { description: OK }
+        '400': { description: Bad Request }
+        '415': { description: Unsupported Media Type }
+        '405': { description: Method Not Allowed }
+  /dropoff:
+    post:
+      summary: Dropoff journey
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                ID:
+                  type: integer
+                  format: int64
+              required: [ID]
+      responses:
+        '200': { description: OK }
+        '204': { description: No Content }
+        '404': { description: Not Found }
+        '415': { description: Unsupported Media Type }
+        '405': { description: Method Not Allowed }
+  /locate:
+    post:
+      summary: Locate assigned car for a journey
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                ID:
+                  type: integer
+                  format: int64
+              required: [ID]
+      responses:
+        '200':
+          description: Car found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Car'
+        '204': { description: No Content }
+        '404': { description: Not Found }
+        '415': { description: Unsupported Media Type }
+        '405': { description: Method Not Allowed }
+components:
+  schemas:
+    Car:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        seats:
+          type: integer
+          format: int32
+        availableSeats:
+          type: integer
+          format: int32
+    Journey:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        passengers:
+          type: integer
+          format: int32
+
