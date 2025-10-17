@@ -16,6 +16,21 @@ In terms of fairness of trip order: groups should be served as fast as possible,
 
 For example: a group of 6 is waiting for a car and there are 4 empty seats at a car for 6; if a group of 2 requests a car you may take them in the car. This may mean that the group of 6 waits a long time, possibly until they become frustrated and leave.
 
+
+## Car Pooling Service description
+
+The Car Pooling service is aimed to track the availability of our pool of cars.
+
+Cars have a different amount of seats available, they can accommodate groups of up to 4, 5 or 6 people.
+
+Users request cars in groups of 1 to 6. People in the same group want to ride on the same car. You can take any group at any car that has enough empty seats for them. If it's not possible to accommodate them, they're willing to wait until there's a car available for them. Once a car is available for a group that is waiting, they should ride. 
+
+Once they get a car assigned, they will journey until the drop off, you cannot ask them to take another car (i.e. you cannot swap them to another car to make space for another group).
+
+In terms of fairness of trip order: groups should be served as fast as possible, but the arrival order should be kept when possible. If group B arrives later than group A, it can only be served before group A if no car can serve group A.
+
+For example: a group of 6 is waiting for a car and there are 4 empty seats at a car for 6; if a group of 2 requests a car you may take them in the car. This may mean that the group of 6 waits a long time, possibly until they become frustrated and leave.
+
 ## API
 
 The interface provided by the service is a RESTfull API. The operations are as follows.
@@ -109,3 +124,9 @@ Responses:
 * **204 No Content** When the group is waiting to be assigned to a car.
 * **404 Not Found** When the group is not to be found.
 * **400 Bad Request** When there is a failure in the request format or the payload can't be unmarshalled.
+
+
+
+
+
+
