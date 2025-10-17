@@ -1,10 +1,10 @@
-# Car Pooling Service
+# Journeys cars app tracker 
 
 ## Introduction 
 
-This service implements a Car Pooling service. 
+This service implements a ourneys cars app tracker.
 
-The Car Pooling service implements a very simple API that can be used to track the assignment of cars to journeys according to the seat capacity of the cars and the number of people that will travel in each journey.
+Journeys cars app tracker service implements a very simple API that can be used to track the assignment of cars to journeys according to the seat capacity of the cars and the number of people that will travel in each journey.
 
 Cars can have 4, 5 or 6 seats.
 
@@ -17,9 +17,9 @@ In terms of fairness of trip order: groups should be served as fast as possible,
 For example: a group of 6 is waiting for a car and there are 4 empty seats at a car for 6; if a group of 2 requests a car you may take them in the car. This may mean that the group of 6 waits a long time, possibly until they become frustrated and leave.
 
 
-## Car Pooling Service description
+## Journeys cars app tracker  Service description
 
-The Car Pooling service is aimed to track the availability of our pool of cars.
+The Journeys cars app tracker  service is aimed to track the availability of our pool of cars.
 
 Cars have a different amount of seats available, they can accommodate groups of up to 4, 5 or 6 people.
 
@@ -124,6 +124,7 @@ Responses:
 * **204 No Content** When the group is waiting to be assigned to a car.
 * **404 Not Found** When the group is not to be found.
 * **400 Bad Request** When there is a failure in the request format or the payload can't be unmarshalled.
+
 
 
 
