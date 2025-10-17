@@ -1,35 +1,13 @@
 # Journeys cars app tracker 
 
-## Introduction 
+The Journeys Cars App Tracker service implements a simple API to manage and track the assignment of cars to journeys based on car seat capacity and the number of people traveling in each group.
 
-This service implements a ourneys cars app tracker.
+Cars in the fleet can have 4, 5, or 6 seats. Users request journeys in groups of 1 to 6 people, and members of the same group must ride together. Any group can be assigned to any car with enough empty seats, regardless of the car’s current location. If no suitable car is available, the group will wait until a car becomes free. Once a car is assigned, the group will travel until their drop-off point — groups cannot be swapped to another car to make room for others.
 
-Journeys cars app tracker service implements a very simple API that can be used to track the assignment of cars to journeys according to the seat capacity of the cars and the number of people that will travel in each journey.
+In terms of fairness: groups should be served as quickly as possible while respecting the arrival order whenever feasible. A later-arriving group can only be served before an earlier group if no car can serve the earlier group.
 
-Cars can have 4, 5 or 6 seats.
+Example: if a group of 6 is waiting and a car with 4 empty seats becomes available, a group of 2 arriving afterward may take those seats. The larger group may have to wait longer, potentially until they leave out of frustration.
 
-People request journeys in groups of 1 to 6. People in the same group want to ride on the same car. You can take any group at any car that has enough empty seats for them, no matter their current location. If it's not possible to accommodate them, they're willing to wait until there is a car available for them. Once a car is available for a group that is waiting, they should ride.
-
-Once they get a car assigned, they will journey until the drop off, you cannot ask them to take another car (i.e. you cannot swap them to another car to make space for another group).
-
-In terms of fairness of trip order: groups should be served as fast as possible, but the arrival order should be kept when possible. If group B arrives later than group A, it can only be served before group A if no car can serve group A.
-
-For example: a group of 6 is waiting for a car and there are 4 empty seats at a car for 6; if a group of 2 requests a car you may take them in the car. This may mean that the group of 6 waits a long time, possibly until they become frustrated and leave.
-
-
-## Journeys cars app tracker  Service description
-
-The Journeys cars app tracker  service is aimed to track the availability of our pool of cars.
-
-Cars have a different amount of seats available, they can accommodate groups of up to 4, 5 or 6 people.
-
-Users request cars in groups of 1 to 6. People in the same group want to ride on the same car. You can take any group at any car that has enough empty seats for them. If it's not possible to accommodate them, they're willing to wait until there's a car available for them. Once a car is available for a group that is waiting, they should ride. 
-
-Once they get a car assigned, they will journey until the drop off, you cannot ask them to take another car (i.e. you cannot swap them to another car to make space for another group).
-
-In terms of fairness of trip order: groups should be served as fast as possible, but the arrival order should be kept when possible. If group B arrives later than group A, it can only be served before group A if no car can serve group A.
-
-For example: a group of 6 is waiting for a car and there are 4 empty seats at a car for 6; if a group of 2 requests a car you may take them in the car. This may mean that the group of 6 waits a long time, possibly until they become frustrated and leave.
 
 ## API
 
@@ -124,6 +102,7 @@ Responses:
 * **204 No Content** When the group is waiting to be assigned to a car.
 * **404 Not Found** When the group is not to be found.
 * **400 Bad Request** When there is a failure in the request format or the payload can't be unmarshalled.
+
 
 
 
